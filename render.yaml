@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: ogrenci-destek-chatbot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: APP_SECRET
+        generateValue: true
+      - key: CONFIDENCE_THRESHOLD
+        value: "0.65"

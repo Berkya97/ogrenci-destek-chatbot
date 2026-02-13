@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli – Öğrenci Destek</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Giriş Formu -->
+    <div class="admin-container" id="loginScreen" style="display:flex; align-items:center; justify-content:center; min-height:100vh;">
+        <div class="modal" style="width:360px;">
+            <h2 style="text-align:center;">🔐 Admin Girişi</h2>
+            <label for="loginPassword">Şifre</label>
+            <input type="password" id="loginPassword" placeholder="Admin şifresini girin..." style="width:100%; padding:10px 12px; border:1px solid var(--gray-300); border-radius:8px; font-size:14px; font-family:inherit;">
+            <div id="loginError" style="color:#dc2626; font-size:13px; margin-top:8px; display:none;">Geçersiz şifre. Tekrar deneyin.</div>
+            <div class="modal-actions" style="margin-top:16px;">
+                <a href="/" class="btn-cancel" style="text-decoration:none; text-align:center;">İptal</a>
+                <button class="btn-save" onclick="handleLogin()">Giriş Yap</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel İçeriği -->
+    <div class="admin-container" id="adminPanel" style="display:none;">
+        <!-- Başlık -->
+        <header class="admin-header">
+            <h1>🎓 Öğrenci Destek – Admin Paneli</h1>
+            <a href="/">← Sohbete Dön</a>
+        </header>
+
+        <!-- İstatistikler -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-value" id="statTotal">-</div>
+                <div class="stat-label">Toplam Talep</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statOpen">-</div>
+                <div class="stat-label">Açık</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statProgress">-</div>
+                <div class="stat-label">İşlemde</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statResolved">-</div>
+                <div class="stat-label">Çözüldü</div>
+            </div>
+        </div>
+
+        <!-- Filtreler -->
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterTickets(null, this)">Tümü</button>
+            <button class="filter-btn" onclick="filterTickets('Açık', this)">Açık</button>
+            <button class="filter-btn" onclick="filterTickets('İşlemde', this)">İşlemde</button>
+            <button class="filter-btn" onclick="filterTickets('Çözüldü', this)">Çözüldü</button>
+        </div>
+
+        <!-- Tablo -->
+        <div style="overflow-x: auto;">
+            <table class="tickets-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tarih</th>
+                        <th>Soru</th>
+                        <th>Kategori</th>
+                        <th>Güven</th>
+                        <th>Durum</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody id="ticketsBody">
+                    <tr>
+                        <td colspan="7" class="empty-state">
+                            <div class="icon">📋</div>
+                            <p>Yükleniyor...</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+    <!-- Düzenleme Modalı -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal">
+            <h2>Talebi Düzenle – <span id="modalTicketId"></span></h2>
+
+            <label for="modalStatus">Durum</label>
+            <select id="modalStatus">
+                <option value="Açık">Açık</option>
+                <option value="İşlemde">İşlemde</option>
+                <option value="Çözüldü">Çözüldü</option>
+            </select>
+
+            <label for="modalNote">Admin Notu</label>
+            <textarea id="modalNote" placeholder="Not ekleyin..."></textarea>
+
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">İptal</button>
+                <button class="btn-save" onclick="saveTicket()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/admin.js"></script>
+</body>
+</html>

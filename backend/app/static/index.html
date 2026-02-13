@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Destek – Sohbet</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Başlık -->
+        <header class="chat-header">
+            <div class="header-info">
+                <div class="avatar">🎓</div>
+                <div>
+                    <h1>Öğrenci Destek</h1>
+                    <span class="status-text">Öğrenci Destek Asistanı</span>
+                </div>
+            </div>
+            <a href="/admin" class="admin-link" title="Admin Paneli">⚙️</a>
+        </header>
+
+        <!-- Mesaj alanı -->
+        <main class="chat-messages" id="chatMessages">
+            <div class="welcome-message">
+                <div class="welcome-icon">👋</div>
+                <h2>Merhaba!</h2>
+                <p>Ben öğrenci destek asistanınım. Akademik, teknik, ödeme veya genel konularda sorularınızı yanıtlayabilirim.</p>
+                <div class="quick-actions">
+                    <button class="quick-btn" onclick="sendQuickMessage('Ders kaydı nasıl yapılır?')">📚 Ders Kaydı</button>
+                    <button class="quick-btn" onclick="sendQuickMessage('Şifremi unuttum nasıl sıfırlarım?')">🔧 Şifre Sıfırlama</button>
+                    <button class="quick-btn" onclick="sendQuickMessage('Harç ücretini nasıl ödeyebilirim?')">💰 Harç Ödeme</button>
+                    <button class="quick-btn" onclick="sendQuickMessage('Öğrenci belgesi nasıl alınır?')">📄 Öğrenci Belgesi</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Giriş alanı -->
+        <footer class="chat-input-area">
+            <form id="chatForm" onsubmit="handleSubmit(event)">
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        id="messageInput"
+                        placeholder="Sorunuzu yazın..."
+                        autocomplete="off"
+                        maxlength="2000"
+                    >
+                    <button type="submit" id="sendBtn" title="Gönder">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13"></path>
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

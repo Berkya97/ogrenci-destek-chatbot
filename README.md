@@ -16,7 +16,7 @@ WhatsApp benzeri sohbet arayüzü üzerinden öğrenci sorularını **otomatik k
 ### 1. Gereksinimleri Yükleyin
 
 ```bash
-cd "dayı site"
+cd "dosya yolu"
 python -m venv .venv
 
 # Windows
